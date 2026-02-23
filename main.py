@@ -1,3 +1,14 @@
+from fastapi import FastAPI, UploadFile, File
+from fastapi.responses import StreamingResponse
+import pandas as pd
+import io
+
+app = FastAPI()
+
+@app.get("/")
+def home():
+    return {"status": "Lead Scoring Bot running"}
+
 @app.post("/score")
 async def score_csv(file: UploadFile = File(...)):
     contents = await file.read()
